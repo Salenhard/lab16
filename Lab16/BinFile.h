@@ -46,6 +46,9 @@ public:
 template<class T>
 BinFile<T>::BinFile(const string& fileName, Access atype)
 {	
+	ofstream s;
+	s.open(fileName);
+	s.close();
 	if (atype == IN)
 		f.open(fileName, ios::in | ios::trunc | ios::binary);
 	else if (atype == OUT)

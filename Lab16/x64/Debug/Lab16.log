@@ -1,1 +1,17 @@
-﻿  Lab16.vcxproj -> C:\Users\Александр\source\repos\lab16\x64\Debug\Lab16.exe
+﻿  Lab16.cpp
+C:\Users\Александр\source\repos\lab16\Lab16\BinFile.h(65,24): warning C4244: =: преобразование "std::streamoff" в "int", возможна потеря данных
+C:\Users\Александр\source\repos\lab16\Lab16\BinFile.h(48,1): message : во время компиляции функции-члена класс шаблон "BinFile<FileDataRecord>::BinFile(const std::string &,Access)"
+C:\Users\Александр\source\repos\lab16\Lab16\Lab16.cpp(35,29): message : выполняется компиляция ссылки на экземпляр шаблон функции "BinFile<FileDataRecord>::BinFile(const std::string &,Access)"
+C:\Users\Александр\source\repos\lab16\Lab16\Lab16.cpp(14,20): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "BinFile<FileDataRecord>"
+C:\Users\Александр\source\repos\lab16\Lab16\BinFile.h(225,23): warning C4244: =: преобразование "std::streamoff" в "int", возможна потеря данных
+C:\Users\Александр\source\repos\lab16\Lab16\BinFile.h(216,33): message : во время компиляции функции-члена класс шаблон "void BinFile<FileDataRecord>::Append(T)"
+          with
+          [
+              T=FileDataRecord
+          ]
+C:\Users\Александр\source\repos\lab16\Lab16\Lab16.cpp(15,14): message : выполняется компиляция ссылки на экземпляр шаблон функции "void BinFile<FileDataRecord>::Append(T)"
+          with
+          [
+              T=FileDataRecord
+          ]
+  Lab16.vcxproj -> C:\Users\Александр\source\repos\lab16\x64\Debug\Lab16.exe
