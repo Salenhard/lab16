@@ -72,10 +72,10 @@ T BinFile<T>::Read(long pos) {
 	T data;
 	if (!fileOpen)
 		Error("BinFile Read(long pos): Файл закрыт");
-	if (accessType = OUT)
+	if (accessType == OUT)
 		Error("BinFile Read(long pos): Недопустимая операция доступа к файлу");
 	else if(pos < 0 || pos >= filesize)
-		Error("BinFile Read(int pos): Недопустимая операция доступа к файлу");
+		Error("BinFile Read(long pos): Недопустимая операция доступа к файлу");
 	f.seekg(pos * Tsize, ios::beg);
 	f.read((char*)&data, Tsize);
 	if (f.tellg() / Tsize >= filesize)
@@ -192,7 +192,8 @@ void BinFile<T>::Seek(long pos, SeekType mode) {
 
 template<class T>
 void BinFile<T>::Delete() {
-	if (remove((char*)fname))
+	f.close();
+	if (remove(fname.c_str()))
 		Error("Ошибка удаления файла");
 }
 
@@ -200,12 +201,9 @@ template <class T>
 int BinFile<T>::Read(T* A, int n){
 	if (!fileOpen)
 		Error("BinFile Read(long pos): Файл закрыт");
-	if (accessType = OUT)
+	if (accessType == OUT)
 		Error("BinFile Read(long pos): Недопустимая операция доступа к файлу");
-	else if (n < 0 || n >= filesize)
-		Error("BinFile Read(int pos): Недопустимая операция доступа к файлу");
-	f.seekg(n * Tsize, ios::beg);
-	f.read((char*)A, Tsize);
+	f.read((char*)A, Tsize * n);
 	if (accessType = IN);
 	if (f.tellg() / Tsize >= filesize)
 		f.clear(ios::eofbit);	
@@ -213,12 +211,16 @@ int BinFile<T>::Read(T* A, int n){
 
 template <class T>
 void BinFile<T>::Append(T item) {
+	T* data = new T();
+	*data = item;
 	if (accessType == IN)
 		Error("BinFile Write(T* A, int n): Недопустимая операция доступа к файлу");
 	if (!fileOpen)
 		Error("BinFile Write(T* A, int n): Файл закрыт");
 	f.seekg(0, ios::end);
-	f.write((char*)item, Tsize);
+	f.write((char*)data, Tsize);
+	filesize = f.tellg() / Tsize;
+	delete data;
 }
 
 template <class T>

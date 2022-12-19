@@ -1,6 +1,4 @@
 ﻿#include <iostream>
-#include "HashTable.h"
-#include "HashTableIterator.h"
 #include "BinFile.h"
 
 
@@ -30,10 +28,11 @@ void PrintList(BinFile<FileDataRecord>& bf, long& startindex) {
 
 int main()
 {
+    setlocale(0, "ru");
     long hashTable[10];
     FileDataRecord dr;
     int i, item, request;
-    BinFile<FileDataRecord> dataFile("DRfile", INOUT);
+    BinFile<FileDataRecord> dataFile("DRfile.txt", INOUT);
     for (i = 0; i < 10; i++)
         hashTable[i] = Empty;   
     for (i = 0; i < 50; i++) {
